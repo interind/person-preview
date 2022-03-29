@@ -1,0 +1,20 @@
+.header {
+  margin-top: 2rem;
+  width: 100%;
+  border-bottom: 1px solid $border-color;
+  &__content {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    padding: 0 $main-shift;
+    min-height: 35px;
+  }
+  &__center {
+    display: flex;
+    justify-content: center;
+  }
+  &__logo {
+    background-image: url('../logo.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}

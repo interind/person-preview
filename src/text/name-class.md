@@ -1,5 +1,7 @@
 body
 header
+header__content
+header__center
 logo
 main-nav
 main-nav__item
