@@ -1,6 +1,7 @@
 @import "normalize-scss/sass/normalize/import-now";
 @import "header";
 @import "main-nav";
+@import "footer";
 
 html, .body {
   font-family: $main-font-page;
@@ -9,10 +10,22 @@ html, .body {
   color: $main-font-color-page;
   font-weight: $main-font-weight;
   font-style: $main-font-style;
+  background-color: $main-background-color-page;
 }
-.main-nav {
-  font-size: ($main-font-size + 4);
-  &__link {
-    font-size: .8em;
+
+#app {
+  max-width: 1366px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: $app-grid-row 1fr $app-grid-row;
+  min-height: 100vh;
+}
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  h1 {
+    margin: 0;
   }
 }

@@ -2,8 +2,8 @@ body
 header
 header__content
 header__center
-logo
-main-nav
+logo-
+main-nav-
 main-nav__item
 main-nav__link
 main-form

@@ -25,4 +25,7 @@
     </div>
   </header>
   <router-view/>
+  <footer class="footer">
+    <p class="footer__text">all rights reserved</p>
+  </footer>
 </template>

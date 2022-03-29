@@ -16,12 +16,15 @@
     line-height: .58;
     transition: color .3s;
     color: lighten($main-font-color-page, 48%);
-    @include link;
-    &:hover {
-      color: darken($main-font-color-page, 60%);
-    }
+
     &_active {
       text-shadow: 0 5px 15px $main-font-color-page;
+    }
+
+    @include link;
+
+    &:hover {
+      color: darken($main-font-color-page, 60%);
     }
   }
 }
