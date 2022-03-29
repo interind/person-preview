@@ -1,6 +1,16 @@
 @import "normalize-scss/sass/normalize/import-now";
-@import 'mixin';
 
-.body {
-  @include font-set-styles($name-font-page, 16px, normal, 1, $font-color-page) // принимает имя, размер, начертание, высоту, цвет
+html, .body {
+  font-family: $main-font-page;
+  font-size: $main-font-size;
+  line-height: $main-font-line-height;
+  color: $main-font-color-page;
+  font-weight: $main-font-weight;
+  font-style: $main-font-style;
+}
+.main-nav {
+  font-size: ($main-font-size + 4);
+  &__link {
+    font-size: .8em;
+  }
 }
