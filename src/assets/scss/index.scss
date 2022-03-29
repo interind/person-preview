@@ -1,0 +1,6 @@
+@import "normalize-scss/sass/normalize/import-now";
+@import 'mixin';
+
+.body {
+  @include font-set-styles($name-font-page, 16px, normal, 1, $font-color-page) // принимает имя, размер, начертание, высоту, цвет
+}
