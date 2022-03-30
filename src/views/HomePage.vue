@@ -1,16 +1,23 @@
-<template>
-  <div class="content">
-    <h1>Home</h1>
-  </div>
-</template>
-
 <script>
 
-// import Form from '@/components/Form';
+import Form from '@/components/Form';
 
 export default {
   name: 'HomePage',
-  components: {},
+  components: {
+    Form,
+  },
+  methods: {
+    print(obj) {
+      console.log(obj);
+    },
+  }
 };
 
 </script>
+
+<template>
+  <div class="content">
+    <Form :print="print"/>
+  </div>
+</template>

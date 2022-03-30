@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "homepage": "https://interind.github.io/person-preview/",
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "predeploy": "npm run build",
