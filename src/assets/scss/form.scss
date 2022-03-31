@@ -4,7 +4,21 @@
   gap: 10px;
   max-width: 680px;
   width: 50%;
+  &__list {
+    list-style: none;
+    padding: 0;
+  }
+  &__list-item {
+    display: grid;
+    grid-template-columns: 43% 43% 10%;
+    gap: 1.38em;
+    margin-bottom: 10px;
+    &:last-of-type {
+      margin-bottom: 30px;
+    }
+  }
   &__title {
+    font-family: $main-font-page;
     font-size: 1.23em;
     font-weight: 500;
     line-height: 1.5;
@@ -16,10 +30,10 @@
     font-family: $main-font-page;
     font-size: $main-font-size;
     line-height: $main-font-line-height;
-    border: 1px solid $input-color-border-default;
   }
   &__input {
-    border: none;
+    border: 1px solid $input-color-border-default;
+    box-sizing: border-box;
     padding: 1.23em;
     background: none;
     background-color: $input-color-background-default;
