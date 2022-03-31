@@ -58,8 +58,10 @@ export default {
       nameInput="name"
       typeInput="text"
       classForm="form"
+      modifier="theme_dark"
       :validator="checkInput"
       :msgError="errors.name"
+      msgPlaceholder="Имя"
       v-model.capitalize="profile.name"
     />
     <InputMy
@@ -68,6 +70,7 @@ export default {
       classForm="form"
       :validator="checkInput"
       :msgError="errors.age"
+      msgPlaceholder="Возраст"
       v-model="profile.age"
     />
     </form>

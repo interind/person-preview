@@ -1,9 +1,29 @@
 .form {
+  display: grid;
+  grid-template-rows: auto auto;
+  gap: 10px;
+  width: 50%;
   &__label {
     position: relative;
     font-family: $main-font-page;
     font-size: $main-font-size;
     line-height: $main-font-line-height;
+    width: 100%;
+  }
+  &__input {
+    border: 1px solid $input-color-border-default;
+    background-color: $input-color-background-default;
+    padding: 1.23em;
+    font-family: $main-font-page;
+    font-size: 1.07em;
+    width: 100%;
+  }
+  &__placeholder {
+    color: $label-color-text;
+    font-size: 1em;
+    position: absolute;
+    top: 1.23em;
+    left: 1.23em;
   }
   &__error {
     position: absolute;

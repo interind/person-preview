@@ -6,6 +6,8 @@
       classForm: String,
       validator: Function,
       msgError: String,
+      modifier: String,
+      msgPlaceholder: String,
       modelValue: String,
       modelModifiers: {
         default: () => ({})
@@ -19,20 +21,27 @@
           value = `${value[0].toUpperCase()}${value.slice(1)}`;
         }
         this.$emit('update:modelValue', value)
+      },
+      createClassElements(str) {
+        const classEl = `${this.classForm}__${str}`;
+        return this.modifier ? `${classEl} ${classEl}_${this.modifier}` : classEl;
       }
     },
     computed: {
       classNameLabel() {
-        return `${this.classForm}__label`;
+        return this.createClassElements('label');
+      },
+      classNamePlaceholder() {
+        return this.createClassElements('placeholder');
       },
       classNameInput() {
-        return `${this.classForm}__input`;
+        return this.createClassElements('input');
       },
       classNameError() {
         if (this.msgError) {
-          return `${this.classForm}__error ${this.classForm}__error_active`;
+          return `${this.createClassElements('error')} ${this.createClassElements('error')}_active`;
         }
-        return `${this.classForm}__error`;
+        return this.createClassElements('error');
       },
     }
   }
@@ -49,6 +58,7 @@
       @input="emitValue"
       @change="validator"
     />
+    <span :class="classNamePlaceholder">{{msgPlaceholder}}</span>
     <span :class="classNameError">{{msgError}}</span>
   </label>
 </template>
