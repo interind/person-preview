@@ -53,31 +53,43 @@ export default {
 </script>
 
 <template>
-  <form class="form" novalidate="true">
+  <form class="form">
+    <h1 class="form__title">
+      Персональные данные
+    </h1>
     <InputMy
+      id="name"
       nameInput="name"
-      typeInput="text"
+      type="text"
+      minlength=2
       classForm="form"
-      modifier="theme_dark"
       :validator="checkInput"
       :msgError="errors.name"
       msgPlaceholder="Имя"
+      :valueCheck="profile.name"
       v-model.capitalize="profile.name"
     />
     <InputMy
+      id="age"
       nameInput="age"
-      typeInput="text"
+      type="number"
+      min=1
+      max=99
       classForm="form"
       :validator="checkInput"
       :msgError="errors.age"
       msgPlaceholder="Возраст"
       v-model="profile.age"
+      :valueCheck="profile.age"
     />
-    </form>
-    <div class="content__info">
+    <div class="form__info">
+      <h2 class="form__title">
+        Дети (макс.5)
+      </h2>
       <button class="button button__add" @click="print(profile)" type="button" :disabled="getStatusButton">
         Добавить ребенка
       </button>
     </div>
+  </form>
 </template>
 

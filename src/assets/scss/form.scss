@@ -1,29 +1,68 @@
 .form {
   display: grid;
-  grid-template-rows: auto auto;
+  grid-template-rows: auto auto auto;
   gap: 10px;
+  max-width: 680px;
   width: 50%;
+  &__title {
+    font-size: 1.23em;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #000;
+    margin: 0;
+  }
   &__label {
     position: relative;
     font-family: $main-font-page;
     font-size: $main-font-size;
     line-height: $main-font-line-height;
-    width: 100%;
+    border: 1px solid $input-color-border-default;
   }
   &__input {
-    border: 1px solid $input-color-border-default;
-    background-color: $input-color-background-default;
+    border: none;
     padding: 1.23em;
+    background: none;
+    background-color: $input-color-background-default;
+    border-radius: 5px;
     font-family: $main-font-page;
+    width: 95%;
     font-size: 1.07em;
-    width: 100%;
+    &_autofill {
+      background-color: $input-color-background-autofill;
+    }
+    &_invalid {
+      background-color: $input-color-background-error;
+    }
+    &_valid {
+      background-color: $input-color-background-success;
+    }
+    &[type="number"] {
+	    -moz-appearance: textfield;
+	    -webkit-appearance: textfield;
+	    appearance: textfield;
+    }
+    &[type="number"]::-webkit-outer-spin-button,
+    &[type="number"]::-webkit-inner-spin-button {
+	    display: none;
+    }
+    &:focus {
+      border: none;
+      outline: none;
+    }
   }
   &__placeholder {
-    color: $label-color-text;
-    font-size: 1em;
     position: absolute;
-    top: 1.23em;
+    top: 40%;
     left: 1.23em;
+    color: $label-color-text;
+    font-size: 1.07em;
+    margin: 0;
+    pointer-events: none;
+    &_focus {
+      top: 10%;
+      transition: top .5s ease;
+      font-size: 1em;
+    }
   }
   &__error {
     position: absolute;
@@ -36,5 +75,12 @@
     &_active {
       opacity: 1;
     }
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.76em;
   }
 }

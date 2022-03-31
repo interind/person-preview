@@ -1,11 +1,13 @@
 @import "normalize-scss/sass/normalize/import-now";
 @import "header";
 @import "logo";
+@import "button";
+@import "content";
 @import "form";
 @import "main-nav";
 @import "footer";
 
-html, .body {
+.body {
   font-family: $main-font-page;
   font-size: $main-font-size;
   line-height: $main-font-line-height;
@@ -21,13 +23,4 @@ html, .body {
   display: grid;
   grid-template-rows: $app-grid-row 1fr $app-grid-row;
   min-height: 100vh;
-}
-
-.content {
-  display: flex;
-  justify-content: center;
-  align-items: baseline;
-  h1 {
-    margin: 0;
-  }
 }
