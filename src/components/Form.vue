@@ -1,92 +1,90 @@
 <script>
+import { mapActions, mapGetters } from 'vuex';
 import InputMy from './InputMy.vue';
 
 export default {
   name: 'Form',
   components: {InputMy},
-  props: {
-    print: Function,
-  },
   data: () => ({
-    errors: {name: '', age: '', status: 'true'},
-    profile: {
-      name: '',
-      age: '',
-      children: [],
-    },
-    childProfile: {
-      id: 0,
-      name: '',
-      age: '',
-    },
+    errors: {},
+    profile: {},
+    childProfile: {},
   }),
   methods: {
     addChild() {
-      this.profile.children.push(this.childProfile);
-      this.childProfile = { id: this.profile.children.length, name: '', age: ''};
-      console.log(this.profile.children);
+      this.profile['children'].push(this.childProfile);
+      this.childProfile = { id: this.profile['children']['length'], name: '', age: ''};
+      this.errors = {status: true};
     },
-    deleteItem(idKey) {
-      this.profile.children = this.profile.children.filter(({id}) => id !== idKey);
-    },
-    checkInput: function () {
-      this.errors = {name: '', age: ''};
-      if (!this.profile['name']) {
+    checkInput(prof) {
+      if (!prof['name']) {
         this.errors['name'] = 'Укажите имя.';
       }
-      else if (this.profile['name'].length < 2) {
+      if (prof['name']['length'] < 2) {
         this.errors['name'] = 'Слишком короткое имя.';
       }
-      else {
-        this.errors['name'] = '';
-      }
 
-      if (!this.profile['age']) {
+      if (!prof['age']) {
         this.errors['age'] = 'Укажите возраст.';
       }
-      else if (!this.validAge(this.profile['age'])) {
+      if (!this.validAge(prof['age'])) {
         this.errors['age'] = 'Укажите настоящий возраст.';
       }
       else {
-        this.errors['age'] = '';
+        this.errors = {};
+        this.actionUser();
       }
     },
     validAge: function (num) {
-      return num > 0 && num < 100;
+      return +num > 0 && +num < 100;
     },
+    profileSubmit() {
+      this.profile['statusShow'] = true;
+      this.actionUser(this.profile);
+      this.$router.push('/preview');
+    },
+    ...mapActions(['actionUser', 'actionDeleteItem']),
+    ...mapGetters(['getInfoUser']),
   },
   computed: {
     statusList() {
-      return this.profile.children.length;
+      return this.profile['children'] && this.profile['children']['length'];
     },
     getStatusButton() {
-      console.log(Object.values(this.errors));
       return Object.values(this.errors).filter((el) => el).length;
     },
     statusShowAddButton() {
-      return this.profile.children.length < 5;
+      return this.profile['children'] && this.profile['children']['length'] < 5 ;
     }
-  }
+  },
+  mounted() {
+    this.profile = this.getInfoUser();
+    this.checkInput(this.profile);
+    this.childProfile = {
+      id: this.profile['children'] ?
+      this.profile.children.length
+      : 0,
+      name: '',
+      age: '',
+    };
+  },
 };
 
 </script>
 
 <template>
-  <form class="form" @submit.prevent="print(profile)">
-    <h1 class="form__title">
-      Персональные данные
-    </h1>
+  <form class="form" novalidate @submit.prevent="profileSubmit">
     <InputMy
       id="name"
       nameInput="name"
       type="text"
       minlength=2
       classForm="form"
-      :validator="checkInput"
-      :msgError="errors.name"
+      :validator="checkInput.bind(null, profile)"
+      :msgError="errors['name']"
       msgPlaceholder="Имя"
-      :valueCheck="profile.name"
-      v-model.capitalize="profile.name"
+      :valueCheck="profile['name']"
+      v-model.capitalize="profile['name']"
     />
     <InputMy
       id="age"
@@ -95,11 +93,11 @@ export default {
       min=15
       max=99
       classForm="form"
-      :validator="checkInput"
-      :msgError="errors.age"
+      :validator="checkInput.bind(null, profile)"
+      :msgError="errors['age']"
       msgPlaceholder="Возраст"
-      v-model="profile.age"
-      :valueCheck="profile.age"
+      v-model="profile['age']"
+      :valueCheck="profile['age']"
     />
     <div class="form__info">
       <h2 class="form__title">
@@ -116,18 +114,18 @@ export default {
       </button>
     </div>
     <transition-group v-show="statusList" name="list-complete" class="form__list" tag="ul">
-      <li v-for="child in profile.children" :key="child.id" class="list-complete-item form__list-item">
+      <li v-for="child, id in profile.children" :key="child.id" class="list-complete-item form__list-item">
         <InputMy
           id="name"
           nameInput="name"
           type="text"
           minlength=2
           classForm="form"
-          :validator="checkInput"
-          :msgError="errors.name"
+          :validator="checkInput.bind(null, profile.children[id])"
+          :msgError="errors['name']"
           msgPlaceholder="Имя"
-          :valueCheck="childProfile.name"
-          v-model.capitalize="childProfile.name"
+          v-model.capitalize="profile.children[id]['name']"
+          :valueCheck="profile.children[id]['name']"
        />
       <InputMy
         id="age"
@@ -136,15 +134,15 @@ export default {
         min=1
         max=80
         classForm="form"
-        :validator="checkInput"
-        :msgError="errors.age"
+        :validator="checkInput.bind(null, profile.children[id])"
+        :msgError="errors['age']"
         msgPlaceholder="Возраст"
-        v-model="childProfile.age"
-        :valueCheck="childProfile.age"
+        v-model="profile.children[id]['age']"
+        :valueCheck="profile.children[id]['age']"
       />
       <button
         class="button button__delete"
-        @click="deleteItem(child.id)"
+        @click="actionDeleteItem(child.id)"
         type="button"
       >
         Удалить

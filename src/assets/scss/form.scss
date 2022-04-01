@@ -1,21 +1,26 @@
 .form {
+  box-sizing: border-box;
   display: grid;
   grid-template-rows: auto auto auto;
   gap: 10px;
   max-width: 680px;
-  width: 50%;
+  width: 100%;
   &__list {
+    box-sizing: border-box;
+    display: grid;
+    gap: 10px;
+    width: 100%;
     list-style: none;
     padding: 0;
+    margin: 0;
+    margin-bottom: 30px;
   }
   &__list-item {
+    box-sizing: border-box;
     display: grid;
     grid-template-columns: 43% 43% 10%;
+    width: 100%;
     gap: 1.38em;
-    margin-bottom: 10px;
-    &:last-of-type {
-      margin-bottom: 30px;
-    }
   }
   &__title {
     font-family: $main-font-page;
@@ -39,7 +44,7 @@
     background-color: $input-color-background-default;
     border-radius: 5px;
     font-family: $main-font-page;
-    width: 95%;
+    width: 100%;
     font-size: 1.07em;
     &_autofill {
       background-color: $input-color-background-autofill;

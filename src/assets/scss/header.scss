@@ -6,6 +6,7 @@
     display: grid;
     grid-template-columns: 100px 1fr;
     padding: 22px $main-shift;
+    padding-bottom: 0;
     min-height: 50px;
   }
   &__center {

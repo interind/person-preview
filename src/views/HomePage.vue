@@ -7,17 +7,10 @@ export default {
   components: {
     Form,
   },
-  methods: {
-    print(obj) {
-      console.log(obj);
-    },
-  }
 };
 
 </script>
 
 <template>
-  <div class="content">
-    <Form :print="print"/>
-  </div>
+  <Form />
 </template>

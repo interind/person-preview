@@ -8,7 +8,8 @@
             <router-link
               class="main-nav__link"
               active-class="main-nav__link_active"
-              to="/">
+              to="/"
+            >
                 Форма
               </router-link>
           </li>
@@ -16,7 +17,8 @@
             <router-link
               class="main-nav__link"
               active-class="main-nav__link_active"
-              to="/preview">
+              to="/preview"
+            >
                 Превью
               </router-link>
           </li>
@@ -24,7 +26,12 @@
       </nav>
     </div>
   </header>
-  <router-view/>
+  <div class="content">
+    <h1 class="content__title">
+      Персональные данные
+    </h1>
+    <router-view/>
+  </div>
   <footer class="footer">
     <p class="footer__text">all rights reserved</p>
   </footer>

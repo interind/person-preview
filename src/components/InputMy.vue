@@ -35,6 +35,9 @@
         }
         else if (this.valueCheck && !this.msgError) {
           this.inputClass = `${this.createClassElement('input')} ${this.createClassElement('input')}_valid`;
+          setTimeout(() => {
+            this.inputClass = this.createClassElement('input');
+          }, 5000);
         } else {
           this.inputClass = this.createClassElement('input');
         }
@@ -60,10 +63,7 @@
     mounted() {
       if (this.valueCheck) {
           this.inputClass = `${this.createClassElement('input')} ${this.createClassElement('input')}_autofill`;
-        }
-      else {
-        this.inputClass = this.createClassElement('input');
-      }
+      } this.createModForInput();
     },
   }
 </script>
