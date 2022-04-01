@@ -8,7 +8,9 @@ export default {
      return this.getInfoUser.children.filter(({name, age}) => name && age);
     },
     user() {
-     return this.getInfoUser['name'] && this.getInfoUser['age'];
+     if(this.getInfoUser['name'] && this.getInfoUser['age']) {
+       return this.getInfoUser
+     } return false;
     },
   },
   methods: {
