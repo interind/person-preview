@@ -7,6 +7,9 @@ export default {
     list() {
      return this.getInfoUser.children.filter(({name, age}) => name && age);
     },
+    user() {
+     return this.getInfoUser['name'] && this.getInfoUser['age'];
+    },
   },
   methods: {
     ...mapActions(['actionUser']),
@@ -19,9 +22,9 @@ export default {
 
 
 <template>
-  <template v-if="getStatusPreview">
+  <template v-if="user">
     <div class="preview">
-      <h2 class="preview__title">{{getInfoUser['name']}}, {{getInfoUser['age']}} лет.</h2>
+      <h2 class="preview__title">{{user['name']}}, {{user['age']}} лет.</h2>
       <p class="preview__subtitle">
         Дети
       </p>
