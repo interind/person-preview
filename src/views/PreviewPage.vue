@@ -4,6 +4,9 @@ import { mapGetters, mapActions } from 'vuex';
 export default {
   computed: {
     ...mapGetters(['getInfoUser', 'getStatusPreview']),
+    list() {
+     return this.getInfoUser.children.filter(({name, age}) => name && age);
+    },
   },
   methods: {
     ...mapActions(['actionUser']),
@@ -22,9 +25,9 @@ export default {
       <p class="preview__subtitle">
         Дети
       </p>
-      <template v-if="getInfoUser.children.length">
+      <template v-if="list.length">
         <transition-group name="list-complete" class="preview__list" tag="ul">
-          <li v-for="child in getInfoUser.children" :key="child.id" class="list-complete-item preview__item">
+          <li v-for="child in list" :key="child.id" class="list-complete-item preview__item">
             {{child['name']}}, {{child['age']}} лет.
           </li>
         </transition-group>

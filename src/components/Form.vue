@@ -16,7 +16,7 @@ export default {
       this.childProfile = { id: this.profile['children']['length'], name: '', age: ''};
       this.errors = {status: true};
     },
-    checkInput(prof) {
+    checkInput(prof) { // надо менять функцию
       if (!prof['name']) {
         this.errors['name'] = 'Укажите имя.';
       }
@@ -45,6 +45,12 @@ export default {
     },
     ...mapActions(['actionUser', 'actionDeleteItem']),
     ...mapGetters(['getInfoUser']),
+    deleteEl(id) {
+      if (window.confirm('Удалить запись о ребенке?')) {
+        this.actionDeleteItem(id);
+      }
+      return;
+    }
   },
   computed: {
     statusList() {
@@ -142,7 +148,7 @@ export default {
       />
       <button
         class="button button__delete"
-        @click="actionDeleteItem(child.id)"
+        @click="deleteEl(child.id)"
         type="button"
       >
         Удалить
